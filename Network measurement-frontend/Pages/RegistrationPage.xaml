@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Network_measurement_frontend.Pages.RegistrationPage"
+             Title="RegistrationPage">
+    <VerticalStackLayout Padding="10">
+        <Label HorizontalOptions="Center">Create new profile</Label>
+        <Entry Placeholder="Firstname"></Entry>
+        <Entry Placeholder="Lastname"></Entry>
+        <Entry Placeholder="Email"></Entry>
+        <Entry Placeholder="Password"></Entry>
+        <Entry Placeholder="Password again"></Entry>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Cancel" HorizontalOptions="End" Grid.Column="0" Clicked="btn_RegistrationCancel"></Button>
+        <Button Text="Create" HorizontalOptions="Start" Grid.Column="1" Clicked="btn_Registration"></Button>
+        </Grid>
+        
+    </VerticalStackLayout>
+</ContentPage>

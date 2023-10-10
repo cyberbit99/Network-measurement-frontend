@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Network_measurement_frontend.Pages.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout>
+        <Frame HorizontalOptions="Center">
+            <ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="ADAM"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+        <Frame HorizontalOptions="Center">
+            <VerticalStackLayout>
+                <Button Text="Login" HorizontalOptions="Center" Clicked="btn_Login"></Button>
+                <Button Text="Create new user" HorizontalOptions="Center" Clicked="btn_RegistrationPage_Jump"></Button>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
