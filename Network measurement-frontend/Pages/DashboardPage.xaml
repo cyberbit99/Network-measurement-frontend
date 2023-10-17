@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Network_measurement_frontend.Pages.DashboardPage"
              Title="DashboardPage">
-    <VerticalStackLayout>
-        
+    <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
+        <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" />
+        <Button x:Name="BtnLogOut" Text="Logout" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" />
     </VerticalStackLayout>
 </ContentPage>

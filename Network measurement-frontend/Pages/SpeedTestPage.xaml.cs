@@ -17,9 +17,9 @@ public partial class SpeedTestPage : ContentPage
 	{
         var down = await DownloadSpeedTest();
         var up = await UploadSpeedTest();
-        var ping = await PingTime("https://google.com");
+        var ping = await PingTime("testmy.net");
 
-        Down.Text = down.ToString();
+        Down.Text = down.ToString(); 
         Up.Text = up.ToString();
         Ping.Text = ping.ToString();
 
@@ -30,7 +30,7 @@ public partial class SpeedTestPage : ContentPage
         var stopwatch = new Stopwatch();
 
         stopwatch.Start();
-        await httpClient.GetAsync(downloadUrl1);
+        HttpResponseMessage response = await httpClient.GetAsync(downloadUrl1);
         stopwatch.Stop();
         var downloadTime = stopwatch.ElapsedMilliseconds;
 

@@ -2,10 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Network_measurement_frontend.Pages.SpeedTestPage">
-    <VerticalStackLayout>
-        <Button Text="SpeedTest" Clicked="RunSpeedTest"></Button>
-        <Label x:Name="Down"/>
-        <Label x:Name="Up"/>
-        <Label x:Name="Ping"/>
+    <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
+        <VerticalStackLayout Margin="0,100">
+        <Grid  BackgroundColor="AliceBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <!-- 1/3 of the available space -->
+                    <ColumnDefinition Width="*" />
+                    <!-- 1/3 of the available space -->
+                    <ColumnDefinition Width="*" />
+                    <!-- 1/3 of the available space -->
+                </Grid.ColumnDefinitions>
+                <VerticalStackLayout Spacing="10"  Grid.Row="0" Grid.Column="0">
+                <Label x:Name="Ping" Text="11110 ms" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="PingLabel" Text="Ping" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+                <VerticalStackLayout Spacing="10"  Grid.Row="0" Grid.Column="1">
+                <Label x:Name="Down" Text="111110 MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="DownLabel" Text="Download" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+                <VerticalStackLayout  Spacing="10"  Grid.Row="0" Grid.Column="2">
+                <Label x:Name="Up" Text="11110 MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="UpLabel" Text="Upload" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+        <ProgressBar Loaded=""></ProgressBar>
+        </VerticalStackLayout>
+        <Button x:Name="BtnSpeedTest" Text="SpeedTest" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnSpeedTest" Text="Add to the report" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
+        
     </VerticalStackLayout>
 </ContentPage>
