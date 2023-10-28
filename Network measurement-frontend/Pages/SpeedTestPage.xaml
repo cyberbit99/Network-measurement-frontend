@@ -29,10 +29,10 @@
                 <Label x:Name="UpLabel" Text="Upload" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
         </Grid>
-        <ProgressBar Loaded=""></ProgressBar>
+        <ProgressBar></ProgressBar>
         </VerticalStackLayout>
         <Button x:Name="BtnSpeedTest" Text="SpeedTest" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium"/>
-        <Button x:Name="BtnSpeedTest" Text="Add to the report" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
+        <Button x:Name="BtnAdd" Text="Add to the report" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
         
     </VerticalStackLayout>
 </ContentPage>

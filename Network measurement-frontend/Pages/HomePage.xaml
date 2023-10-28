@@ -3,32 +3,40 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Network_measurement_frontend.Pages.HomePage"
-    xmlns:local="clr-namespace:Network_measurement_frontend.Pages">
+    xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
+    xmlns:materialIcons="clr-namespace:Material.Icons;assembly=Material.Icons">
     
     <TabBar>
         <Tab Title="SpeedTest"
-             Icon="">
+             Icon="./images/car_cruise_control.svg">
             <ShellContent
         ContentTemplate="{DataTemplate local:SpeedTestPage}"
         Route="SpeedTestPage" />
         </Tab>
         
         <Tab Title="WSS"
-             Icon="">
+             Icon="./images/wifi_settings.svg">
             <ShellContent
         ContentTemplate="{DataTemplate local:WSSPage}"
         Route="WSSPage" />
         </Tab>
-        
+
+        <Tab Title="Devices"
+             Icon="./images/devices.svg">
+            <ShellContent
+        ContentTemplate="{DataTemplate local:DevicesPage}"
+        Route="DevicesPage" />
+        </Tab>
+
         <Tab Title="Report"
-             Icon="">
+             Icon="./images/clipboard_file_outline.svg">
             <ShellContent
         ContentTemplate="{DataTemplate local:ReportPage}"
         Route="ReportPage" />
         </Tab>
 
         <Tab Title="Settings"
-             Icon="">
+             Icon="./images/cog_outline.svg">
             <ShellContent
         ContentTemplate="{DataTemplate local:SettingsPage}"
         Route="SettingsPage" />

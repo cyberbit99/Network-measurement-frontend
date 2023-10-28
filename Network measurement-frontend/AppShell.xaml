@@ -18,6 +18,9 @@
     <ShellContent
         ContentTemplate="{DataTemplate locals:RegistrationPage}"
         Route="RegistrationPage" />
-
+    
+    <ShellContent
+        ContentTemplate="{DataTemplate locals:ReportEditorPage}"
+        Route="ReportEditorPage" />
 
 </Shell>

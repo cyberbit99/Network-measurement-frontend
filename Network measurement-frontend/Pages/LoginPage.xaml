@@ -2,29 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
-             x:Class="Network_measurement_frontend.Pages.LoginPage"
-             Title="LoginPage">
+             x:Class="Network_measurement_frontend.Pages.LoginPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
-        <ListView x:Name="itemListView">
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type local:Item}">
-                    <local:Item Name="Item 1" Description="Description 1" />
-                    <local:Item Name="Item 2" Description="Description 2" />
-                    <local:Item Name="Item 3" Description="Description 3" />
-                </x:Array>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Description}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+        <Entry x:Name="EntEmail" Placeholder="Email" />
+        <Entry x:Name="EntPassword" Placeholder="Password" IsPassword="True" />
         <VerticalStackLayout VerticalOptions="Center" Spacing="20">
             <Button x:Name="BtnLogin" Text="Login" HeightRequest="50" FontSize="Medium" Clicked="btn_Login"/>
             <Button x:Name="BtnRegistration" Text="Registration" HeightRequest="50" FontSize="Medium" Clicked="btn_RegistrationPage_Jump"/>

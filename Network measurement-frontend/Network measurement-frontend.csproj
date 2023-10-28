@@ -58,17 +58,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\access_point.svg" />
+	  <None Remove="Resources\Images\account.svg" />
+	  <None Remove="Resources\Images\car_cruise_control.svg" />
+	  <None Remove="Resources\Images\clipboard_file_outline.svg" />
+	  <None Remove="Resources\Images\cog.svg" />
+	  <None Remove="Resources\Images\cog_outline.svg" />
+	  <None Remove="Resources\Images\devices.svg" />
+	  <None Remove="Resources\Images\file_alert_outline.svg" />
+	  <None Remove="Resources\Images\gauge_full.svg" />
 	  <None Remove="Resources\Images\splash.svg" />
+	  <None Remove="Resources\Images\wifi_settings.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\DashboardPage.xaml">
+	  <PackageReference Include="Material.Icons" Version="2.0.11" />
+	  <PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
+	  <PackageReference Include="Zeroconf" Version="3.6.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\DevicesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\NewReportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegistrationPage.xaml">

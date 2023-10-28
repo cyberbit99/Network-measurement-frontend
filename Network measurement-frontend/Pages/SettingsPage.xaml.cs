@@ -6,4 +6,9 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void BtnLogOut_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//LoginPage");
+    }
 }

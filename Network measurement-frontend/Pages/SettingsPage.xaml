@@ -4,6 +4,7 @@
              x:Class="Network_measurement_frontend.Pages.SettingsPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
         <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" />
-        <Button x:Name="BtnLogOut" Text="Logout" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" />
+        <Button x:Name="BtnTheme" Text="Theme" HeightRequest="50" FontSize="Medium" />
+        <Button x:Name="BtnLogOut" Text="Logout" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" Clicked="BtnLogOut_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

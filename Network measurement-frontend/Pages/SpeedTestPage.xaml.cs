@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.NetworkInformation;
+using Network_measurement_frontend.Measurements;
 
 namespace Network_measurement_frontend.Pages;
 
@@ -15,76 +16,16 @@ public partial class SpeedTestPage : ContentPage
 	}
 	public async void  RunSpeedTest(object sender, EventArgs e)
 	{
-        var down = await DownloadSpeedTest();
-        var up = await UploadSpeedTest();
-        var ping = await PingTime("testmy.net");
+        SpeedTest st = new SpeedTest();
+
+        var down = await st.DownloadSpeedTest(downloadUrl1);
+        var up = await st.UploadSpeedTest(uploadUrl1);
+        var ping = await st.PingTime("testmy.net");
 
         Down.Text = down.ToString(); 
         Up.Text = up.ToString();
         Ping.Text = ping.ToString();
 
     }
-    private async Task<double> DownloadSpeedTest()
-    {
-        var httpClient = new HttpClient();
-        var stopwatch = new Stopwatch();
-
-        stopwatch.Start();
-        HttpResponseMessage response = await httpClient.GetAsync(downloadUrl1);
-        stopwatch.Stop();
-        var downloadTime = stopwatch.ElapsedMilliseconds;
-
-        return MBsCalc(downloadTime, 100);
-    } 
-    private async Task<double> UploadSpeedTest()
-    {
-        var httpClient = new HttpClient();
-        var stopwatch = new Stopwatch();
-        int MB = 100;
-
-        byte[] randomData = GenerateRandomData(MB * 1024 * 1024); // 100MB
-
-        // Create ByteArrayContent from the random data
-        ByteArrayContent dataContent = new ByteArrayContent(randomData);
-
-        stopwatch.Start();
-        // Perform the HTTP POST request
-        HttpResponseMessage response = await httpClient.PostAsync(uploadUrl1, dataContent);
-        stopwatch.Stop();
-        var uploadTime = stopwatch.ElapsedMilliseconds;
-
-        return MBsCalc(uploadTime, MB);
-    }
-    private async Task<long> PingTime(string targetHost)
-    {
-        try
-        {
-            Ping ping = new Ping();
-            PingReply reply = await ping.SendPingAsync(targetHost);
-
-            if (reply.Status == IPStatus.Success)
-            {
-                return reply.RoundtripTime;
-            }
-            else
-            {
-                return -1;
-            }
-        }
-        catch (PingException ex)
-        {
-            return -1;
-        }
-    }
-
-    private double MBsCalc(long ms, int MB)
-    {
-        return MB / ms / 1000;  
-    }
-	private static byte[] GenerateRandomData(int size)
-    {
-        byte[] data = new byte[size];
-        new Random().NextBytes(data);
-        return data;
-    }
+    
 }

@@ -4,7 +4,10 @@
              xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
              x:Class="Network_measurement_frontend.Pages.ReportPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
-        <ListView x:Name="itemListView" MaximumHeightRequest="100">
+        <Label Text="Reports" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />
+        <Label Text="" TextColor="LightSlateGrey" FontSize="Small" HorizontalOptions="Center" />
+
+        <ListView x:Name="itemListView" MaximumHeightRequest="200">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:Item}">
                     <local:Item Name="Item 1" Description="Description 1" />
@@ -23,6 +26,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" />
+        <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" Clicked="BtnCreateNewReport_Clicked" />
+        <Button x:Name="BtnEdit" Text="Edit selected repot" HeightRequest="50" FontSize="Medium" Clicked="btn_Edit_Selected"/>
+        <Button x:Name="BtnExport" Text="Export selected repot" HeightRequest="50" FontSize="Medium" Clicked="BtnExport_Clicked"/>
+        <Button x:Name="BtnDeleteSelected" Text="Delete selected report" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" Clicked="BtnDeleteSelected_Clicked" />
+
     </VerticalStackLayout>
 </ContentPage>

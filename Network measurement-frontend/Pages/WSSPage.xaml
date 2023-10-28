@@ -5,7 +5,7 @@
              x:Class="Network_measurement_frontend.Pages.WSSPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
         <Label Text="50" FontSize="100" HorizontalOptions="Center" FontAttributes="Bold"/>
-        <ListView x:Name="itemListView" MaximumHeightRequest="100">
+        <ListView x:Name="itemListView" MaximumHeightRequest="200">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:Item}">
                     <local:Item Name="Item 1" Description="Description 1" />
@@ -24,10 +24,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnMeasureActual" Text="Measure actual" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium"/>
-        <Button x:Name="BtnMeasureAll" Text="Measure all" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnMeasureActual" Text="Measure actual"  HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnMeasureAll" Text="Measure all"  HeightRequest="50" FontSize="Medium"/>
 
-        <Button x:Name="BtnSpeedTest" Text="Add to the report" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
+        <Button x:Name="BtnSpeedTest" Text="Add to the report"  HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
 
     </VerticalStackLayout>
 </ContentPage>

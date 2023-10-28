@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
+             xmlns:device="clr-namespace:Network_measurement_frontend.Shared"
+             x:Class="Network_measurement_frontend.Pages.DevicesPage">
+    <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
+        <Label Text="Devices in your LAN" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />
+        <Label Text="All device in youre LAN what you see" TextColor="LightSlateGrey" FontSize="Small" HorizontalOptions="Center" />
+        <ScrollView VerticalOptions="Fill">
+        <ListView x:Name="deviceListView" VerticalOptions="Start" MaximumHeightRequest="400">
+            <ListView.ItemsSource>
+                    <x:Array Type="{x:Type device:Device}">
+                    </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding IPAddress}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </ScrollView>
+        <Button x:Name="BtnDevices" Text="Scan your LAN" Clicked="BtnDevices_Clicked" HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnAddToReport" Text="Add to the report"  HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
+    </VerticalStackLayout>
+</ContentPage>

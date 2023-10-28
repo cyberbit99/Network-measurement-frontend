@@ -1,8 +1,8 @@
 namespace Network_measurement_frontend.Pages;
 
-public partial class DashboardPage : ContentPage
+public partial class NewReportPage : ContentPage
 {
-	public DashboardPage()
+	public NewReportPage()
 	{
 		InitializeComponent();
 	}
