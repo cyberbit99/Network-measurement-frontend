@@ -17,19 +17,19 @@
                     <!-- 1/3 of the available space -->
                 </Grid.ColumnDefinitions>
                 <VerticalStackLayout Spacing="10"  Grid.Row="0" Grid.Column="0">
-                <Label x:Name="Ping" Text="11110 ms" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="Ping" Text="ms" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                 <Label x:Name="PingLabel" Text="Ping" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
                 <VerticalStackLayout Spacing="10"  Grid.Row="0" Grid.Column="1">
-                <Label x:Name="Down" Text="111110 MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="Down" Text="MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                 <Label x:Name="DownLabel" Text="Download" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
                 <VerticalStackLayout  Spacing="10"  Grid.Row="0" Grid.Column="2">
-                <Label x:Name="Up" Text="11110 MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label x:Name="Up" Text="MB/s" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                 <Label x:Name="UpLabel" Text="Upload" HorizontalTextAlignment="Center"/>
             </VerticalStackLayout>
         </Grid>
-        <ProgressBar></ProgressBar>
+        <ProgressBar x:Name="STPB" ></ProgressBar>
         </VerticalStackLayout>
         <Button x:Name="BtnSpeedTest" Text="SpeedTest" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium"/>
         <Button x:Name="BtnAdd" Text="Add to the report" Clicked="RunSpeedTest" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>

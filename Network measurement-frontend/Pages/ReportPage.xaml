@@ -9,18 +9,13 @@
 
         <ListView x:Name="itemListView" MaximumHeightRequest="200">
             <ListView.ItemsSource>
-                <x:Array Type="{x:Type local:Item}">
-                    <local:Item Name="Item 1" Description="Description 1" />
-                    <local:Item Name="Item 2" Description="Description 2" />
-                    <local:Item Name="Item 3" Description="Description 3" />
-                </x:Array>
+               
             </ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Description}" />
+                           
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

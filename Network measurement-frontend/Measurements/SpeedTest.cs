@@ -19,16 +19,17 @@ namespace Network_measurement_frontend.Measurements
             HttpResponseMessage response = await httpClient.GetAsync(downloadUrl);
             stopwatch.Stop();
             var downloadTime = stopwatch.ElapsedMilliseconds;
+            double ret = MBsCalc(downloadTime, (long)(response.Content.Headers.ContentLength / 1024 / 1024));
 
-            return MBsCalc(downloadTime, 100);
+            return ret;
         }
         public async Task<double> UploadSpeedTest(string uploadUrl)
         {
             var httpClient = new HttpClient();
             var stopwatch = new Stopwatch();
-            int MB = 100;
+            int MB = 10;
 
-            byte[] randomData = GenerateRandomData(MB * 1024 * 1024); // 100MB
+            byte[] randomData = GenerateRandomData(MB * 1024 * 1024); // 10MB
 
             // Create ByteArrayContent from the random data
             ByteArrayContent dataContent = new ByteArrayContent(randomData);
@@ -39,33 +40,42 @@ namespace Network_measurement_frontend.Measurements
             stopwatch.Stop();
             var uploadTime = stopwatch.ElapsedMilliseconds;
 
-            return MBsCalc(uploadTime, MB);
+            return MBsCalc(uploadTime, MB); 
         }
         public async Task<long> PingTime(string targetHost)
         {
-            try
-            {
-                Ping ping = new Ping();
-                PingReply reply = await ping.SendPingAsync(targetHost);
+            var httpClient = new HttpClient();
+            var stopwatch = new Stopwatch();
 
-                if (reply.Status == IPStatus.Success)
-                {
-                    return reply.RoundtripTime;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            catch (PingException ex)
-            {
-                return -1;
-            }
+            stopwatch.Start();
+            HttpResponseMessage response = await httpClient.GetAsync(targetHost);
+            stopwatch.Stop();
+            var pingTime = stopwatch.ElapsedMilliseconds;
+            return pingTime;
+            //try
+            //{
+            //    Ping ping = new Ping();
+            //    PingReply reply = await ping.SendPingAsync(targetHost);
+
+            //    if (reply.Status == IPStatus.Success)
+            //    {
+            //        return reply.RoundtripTime;
+            //    }
+            //    else
+            //    {
+            //        return -1;
+            //    }
+            //}
+            //catch (PingException ex)
+            //{
+            //    return -1;
+            //}
         }
 
-        private double MBsCalc(long ms, int MB)
+        private double MBsCalc(long ms, long MB)
         {
-            return MB / ms / 1000;
+            double mbs = MB / (Convert.ToDouble(ms) / 1000);
+            return Math.Round(mbs, 1);
         }
         private static byte[] GenerateRandomData(int size)
         {
