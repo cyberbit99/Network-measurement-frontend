@@ -8,9 +8,9 @@
             <Image Source="dotnet_bot" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
             <Label Text="Edit report" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />
             <Label Text="Please enter your information below to edit actual report" TextColor="LightSlateGrey" FontSize="Small" HorizontalOptions="Center" />
-            <Entry x:Name="Name" Placeholder="Name"/>
-            <Editor x:Name="Description" Placeholder="Description" AutoSize="TextChanges" />
-            <Button x:Name="BtnRegister" Text="Save" HeightRequest="50" FontSize="Medium" />
+            <Entry x:Name="EntName" Placeholder="Name" Text="{Binding Name}"/>
+            <Editor x:Name="EntDescription" Placeholder="Description" AutoSize="TextChanges" Text="{Binding Description}"/>
+            <Button x:Name="BtnReportEdit" Text="Save" HeightRequest="50" FontSize="Medium" Clicked="BtnReportEdit_Clicked" />
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Label Text="Not yet? " FontSize="Medium" TextColor="#101010"/>
                 <Label Text="Back" FontSize="Medium" TextColor="#1d94ab">

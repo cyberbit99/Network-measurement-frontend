@@ -1,7 +1,6 @@
-//using Android.Content;
-//using Android.Net.Wifi;
-//using Android.App;
-using Xamarin.Essentials;
+#if ANDROID
+using Network_measurement_frontend.Pages.Android;
+#endif
 
 namespace Network_measurement_frontend.Pages;
 
@@ -11,15 +10,25 @@ public partial class WSSPage : ContentPage
     {
         InitializeComponent();
     }
-
-    private async void ListAvailableWifiNetworks()
+    public void WSS()
     {
-    }
+        //Android
+#if ANDROID
+        AndroidWSS androidWSS = new AndroidWSS();
+        var list = androidWSS.GetWSS();
+#endif
+        //iOS
+#if IOS
 
-    public class AndroidWSS
-    {
-        public void WSS()
-        {
-        }
+#endif
+        //Windows
+#if WINDOWS
+
+#endif
+        //macOS
+#if MACCATALYST
+
+#endif
+
     }
 }

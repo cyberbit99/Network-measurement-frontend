@@ -11,16 +11,25 @@ namespace Network_measurement_frontend.Shared
         private static Session instance;
         private Session(User user, bool isActive)
         {
-            User = user;
-            IsActive = isActive;
+            this.user = user;
+            this.isActive = isActive;
         }
 
-        public User User { get; }
-        public bool IsActive { get; }
+        private User user;
+        private bool isActive;
+
+        public User GetUser()
+        {
+            return this.user;
+        } 
+        public bool GetIsActive()
+        {
+            return this.isActive;
+        }
 
         public static Session Instance(User user) 
         {
-            if (instance == null || instance.IsActive == false)
+            if (instance == null || instance.isActive == false)
             {
                 instance = new Session(user, true);
             }

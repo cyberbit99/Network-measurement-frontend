@@ -31,13 +31,15 @@ public partial class LoginPage : ContentPage
         var json = await response.Content.ReadAsStringAsync();
         if (json != null && response.IsSuccessStatusCode)
         {
-            User? user = JsonSerializer.Deserialize<List<User>>(json).First();
-            Session.Instance(user);
+            var user = JsonSerializer.Deserialize<List<User>>(json).First();
+            if (user != null)
+            {
+                Session.Instance(user);
+                Shell.Current.GoToAsync("//HomePage");
+            }
+            
         }
-        if (response.IsSuccessStatusCode)
-        {
-            Shell.Current.GoToAsync("//HomePage");
-        }
+       
     }
     private async Task<HttpResponseMessage> GetSession()
     {
@@ -52,7 +54,7 @@ public partial class LoginPage : ContentPage
     }
     private StringContent CreateContent()
     {
-        LoginData loginData = new LoginData(EntEmail.Text, EntPassword.Text);
+        LoginData loginData = new LoginData(EntUsername.Text, EntPassword.Text);
         string json = JsonConvert.SerializeObject(loginData);
         var httpContent = new StringContent(json, null, "application/json");
 

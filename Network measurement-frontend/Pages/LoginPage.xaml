@@ -4,7 +4,7 @@
               xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
              x:Class="Network_measurement_frontend.Pages.LoginPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
-        <Entry x:Name="EntEmail" Placeholder="Email" />
+        <Entry x:Name="EntUsername" Placeholder="Username" />
         <Entry x:Name="EntPassword" Placeholder="Password" IsPassword="True" />
         <VerticalStackLayout VerticalOptions="Center" Spacing="20">
             <Button x:Name="BtnLogin" Text="Login" HeightRequest="50" FontSize="Medium" Clicked="btn_Login"/>

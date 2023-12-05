@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
+             xmlns:local="clr-namespace:Network_measurement_frontend.Shared.Model"
              x:Class="Network_measurement_frontend.Pages.ReportPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
         <Label Text="Reports" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />
         <Label Text="" TextColor="LightSlateGrey" FontSize="Small" HorizontalOptions="Center" />
 
-        <ListView x:Name="itemListView" MaximumHeightRequest="200">
-            <ListView.ItemsSource>
-               
-            </ListView.ItemsSource>
+        <ListView x:Name="itemListView" MaximumHeightRequest="200" ItemsSource="{Binding Reports}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                           
-                        </StackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Description}" /> 
+                        </VerticalStackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" Clicked="BtnCreateNewReport_Clicked" />
-        <Button x:Name="BtnEdit" Text="Edit selected repot" HeightRequest="50" FontSize="Medium" Clicked="btn_Edit_Selected"/>
-        <Button x:Name="BtnExport" Text="Export selected repot" HeightRequest="50" FontSize="Medium" Clicked="BtnExport_Clicked"/>
+        <Button x:Name="BtnEdit" Text="Edit selected report" HeightRequest="50" FontSize="Medium" Clicked="btn_Edit_Selected"/>
+        <Button x:Name="BtnExport" Text="Export selected report" HeightRequest="50" FontSize="Medium" Clicked="BtnExport_Clicked"/>
         <Button x:Name="BtnDeleteSelected" Text="Delete selected report" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" Clicked="BtnDeleteSelected_Clicked" />
 
     </VerticalStackLayout>
