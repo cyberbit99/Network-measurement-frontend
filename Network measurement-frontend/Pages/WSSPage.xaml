@@ -2,13 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
-             x:Class="Network_measurement_frontend.Pages.WSSPage">
+             x:Class="Network_measurement_frontend.Pages.WSSPage"
+                 x:Name="scanPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
-        <Label Text="50" FontSize="100" HorizontalOptions="Center" FontAttributes="Bold"/>
+        <Label x:Name="LblRssi" Text="50" FontSize="70" HorizontalOptions="Center" FontAttributes="Bold"/>
+        <Label x:Name="LblBssid" Text="50" FontSize="Default"  HorizontalOptions="Center" FontAttributes="Bold"/>
+        <Grid>
+            <ActivityIndicator
+         x:Name="loading"
+         HeightRequest="46"
+         IsRunning="True"
+         WidthRequest="46"
+         Color="{StaticResource SecondaryDarkText}" />
+            <ScrollView Padding="20,0" MaximumHeightRequest="200">
+                <CollectionView x:Name="scanCollectionView" SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="12,6">
+                                <Grid ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                        <Label FontSize="18" Text="{Binding SsidName}" />
+                                        <Label FontSize="14" Text="{Binding Bssid}" />
+                                    </StackLayout>
+                                    <Button
+                                 Grid.Column="1"
+                                 Padding="18,0"
+                                 Command="{Binding Source={x:Reference Name=scanPage}, Path=BindingContext.InfoCommand}"
+                                 CommandParameter="{Binding .}"
+                                 CornerRadius="2"
+                                 HeightRequest="44"
+                                 Text="Info"
+                                 TextTransform="Uppercase"
+                                 VerticalOptions="CenterAndExpand" />
+                                </Grid>
+                                <BoxView
+                             Margin="0,8"
+                             BackgroundColor="{AppThemeBinding Light=Black,
+                                                               Dark=White}"
+                             HeightRequest="0.1" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
         <ListView x:Name="itemListView" MaximumHeightRequest="200">
-            <ListView.ItemsSource>
-
-            </ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

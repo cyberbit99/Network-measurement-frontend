@@ -39,7 +39,7 @@ public partial class LoginPage : ContentPage
                 if (user != null)
                 {
                     Session.Instance(user);
-                    Shell.Current.GoToAsync("//HomePage");
+                    await Shell.Current.GoToAsync("//HomePage");
                 }
 
             }

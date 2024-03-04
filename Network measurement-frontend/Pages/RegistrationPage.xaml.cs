@@ -27,7 +27,7 @@ public partial class RegistrationPage : ContentPage
             var json = await response.Content.ReadAsStringAsync();
             if (json != null && response.IsSuccessStatusCode)
             {
-                Shell.Current.GoToAsync("//LoginPage");
+                await Shell.Current.GoToAsync("//LoginPage");
             }
         }
         
@@ -41,8 +41,8 @@ public partial class RegistrationPage : ContentPage
         return httpContent;
     }
 
-    private void BtnRegister_Clicked(object sender, EventArgs e)
+    private async void BtnRegister_Clicked(object sender, EventArgs e)
     {
-        RegistrationAsync();
+        await RegistrationAsync();
     }
 }

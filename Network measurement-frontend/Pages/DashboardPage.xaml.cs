@@ -31,9 +31,12 @@ public partial class DashboardPage : ContentPage
 
         // Clear the existing items and add the fetched items to the collection
         Reports.Clear();
-        foreach (var item in fetchedItems)
+        if (fetchedItems != null)
         {
-            Reports.Add(item);
+            foreach (var item in fetchedItems)
+            {
+                Reports.Add(item);
+            }
         }
     }
     private void SetActive()
@@ -54,8 +57,17 @@ public partial class DashboardPage : ContentPage
         Session session = Session.Instance(null as User);
         User user = session.GetUser();
         var httpClient = new HttpClient();
+        try
+        {
+
         var response = await httpClient.GetStringAsync($"http://192.168.1.85:7037/api/getreport/{user.UserId}");
-        return JsonConvert.DeserializeObject<List<MeasurementReport>>(response);
+                return JsonConvert.DeserializeObject<List<MeasurementReport>>(response);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+
     }
 
     private void BtnSetActive_Clicked(object sender, EventArgs e)

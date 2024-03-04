@@ -70,11 +70,13 @@
     <None Remove="Resources\Images\wifi_settings.svg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="WifiManager.Maui" Version="1.0.1" />
     <PackageReference Include="Zeroconf" Version="3.6.11" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MAUIWifiManager\MauiWifiManager.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\AddToReportPage.xaml.cs">

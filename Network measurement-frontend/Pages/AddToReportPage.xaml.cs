@@ -2,6 +2,7 @@ using Network_measurement_frontend.Shared;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Microsoft.Maui;
+using Network_measurement_frontend.Shared.Model;
 
 namespace Network_measurement_frontend.Pages;
 
@@ -40,7 +41,6 @@ public partial class AddToReportPage : ContentPage
         // Use HttpClient or your preferred HTTP client to make a request to the API
         // Deserialize the response to a list of items
         // Return the list of items
-        // Example:
         Session session = Session.Instance(null as User);
         User user = session.GetUser();
         var httpClient = new HttpClient();
