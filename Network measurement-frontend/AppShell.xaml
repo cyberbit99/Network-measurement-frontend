@@ -22,5 +22,9 @@
     <ShellContent
         ContentTemplate="{DataTemplate locals:ReportEditorPage}"
         Route="ReportEditorPage" />
+    
+    <ShellContent
+        ContentTemplate="{DataTemplate locals:SpeedTestPage}"
+        Route="SpeedTestPage" />
 
 </Shell>

@@ -13,7 +13,7 @@ public partial class ReportEditorPage : ContentPage
 
     private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//HomePage");
+        Navigation.PopAsync();
     }
 
     private async Task BtnReportEdit_ClickedAsync()

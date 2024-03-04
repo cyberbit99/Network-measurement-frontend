@@ -8,9 +8,15 @@ namespace Network_measurement_frontend.Pages;
 
 public partial class DevicesPage : ContentPage
 {
+    public List<object> DevicesItems { get; set; } = new List<object>();
     public DevicesPage()
     {
         InitializeComponent();
+        var x = new DashboardPage();
+        x.ActiveReportChanged += (sender, e) =>
+        {
+            DevicesItems.Clear();
+        };
     }
 
     private async void BtnDevices_Clicked(object sender, EventArgs e)
@@ -19,6 +25,7 @@ public partial class DevicesPage : ContentPage
         {
             var devices = await DiscoverDevices();
             deviceListView.ItemsSource = devices;
+            DevicesItems.Add(devices);
         }
         catch (Exception ex)
         {
@@ -58,5 +65,9 @@ public partial class DevicesPage : ContentPage
         }
 
         return devices;
+    }
+    private async void BtnAdd_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddToReportPage(DevicesItems));
     }
 }

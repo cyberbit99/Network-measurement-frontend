@@ -8,6 +8,10 @@ namespace Network_measurement_frontend.Shared
 {
     public partial class User
     {
+        public User()
+        {
+        }
+
         public User(string username, string userEmail, string password, int userRoleId, string firstname, string lastname)
         {
             Username = username;

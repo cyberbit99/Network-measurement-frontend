@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Network_measurement_frontend.Shared.Model"
-             x:Class="Network_measurement_frontend.Pages.ReportPage">
+             x:Class="Network_measurement_frontend.Pages.AddToReportPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
         <Label Text="Reports" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />
         <Label Text="" TextColor="LightSlateGrey" FontSize="Small" HorizontalOptions="Center" />
@@ -19,8 +19,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" Clicked="BtnCreateNewReport_Clicked" />
-        <Button x:Name="BtnEdit" Text="Edit selected report" HeightRequest="50" FontSize="Medium" Clicked="btn_Edit_Selected"/>
-        <Button x:Name="BtnExport" Text="Export selected report" HeightRequest="50" FontSize="Medium" Clicked="BtnExport_Clicked"/>
+        <Button x:Name="BtnAddToSelected" Text="Add to the selected" HeightRequest="50" FontSize="Medium" Clicked="BtnAddToSelected_Clicked" />
+        <Button x:Name="BtnAddToActive" Text="Add to the active" HeightRequest="50" FontSize="Medium" Clicked="BtnAddToActive_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

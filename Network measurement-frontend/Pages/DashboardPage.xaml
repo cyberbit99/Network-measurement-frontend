@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Network_measurement_frontend.Pages.DashboardPage">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" Margin="20, 20,20, 20" Spacing="20" >
+            <Image Source="./images/access_point.svg"></Image>
+            <Label x:Name="LblGreeting" FontSize="25" HorizontalOptions="Start" FontAttributes="Bold"/>
+            <BoxView HeightRequest="4" Color="LightGray"/>
+            <Label Text="Active report: " FontSize="20" HorizontalOptions="Start" FontAttributes="Bold"/>
+            <Label x:Name="ActiveReport" FontSize="20" HorizontalOptions="Start"/>
+            <BoxView HeightRequest="4" Color="LightGray"/>
+
+            <ListView x:Name="itemListView" MaximumHeightRequest="300" ItemsSource="{Binding Reports}" SelectionMode="Single" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}" />
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <BoxView HeightRequest="4" Color="LightGray"/>
+            <Button x:Name="BtnCreateNewReport" Text="Create new report" HeightRequest="50" FontSize="Medium" />
+            <Button x:Name="BtnSetActive" Text="Set active report" HeightRequest="50" FontSize="Medium" Clicked="BtnSetActive_Clicked"/>
+            <Button x:Name="BtnLogOut" Text="Log out" HeightRequest="50" FontSize="Medium" BackgroundColor="PaleVioletRed" Clicked="BtnLogOut_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

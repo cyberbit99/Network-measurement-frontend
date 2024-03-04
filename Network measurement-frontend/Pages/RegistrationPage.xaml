@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Network_measurement_frontend.Pages.RegistrationPage"
-             Title="RegistrationPage">
+             Title="Registration">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20" >
         <Image Source="dotnet_bot" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
         <Label Text="Create a new account" TextColor= "#101010" FontSize="Large" HorizontalOptions="Center" />

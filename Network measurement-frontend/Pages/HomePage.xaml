@@ -7,6 +7,13 @@
     xmlns:materialIcons="clr-namespace:Material.Icons;assembly=Material.Icons">
     
     <TabBar>
+        <Tab Title="Dashboard"
+             Icon="./images/gauge_full.svg">
+            <ShellContent
+        ContentTemplate="{DataTemplate local:DashboardPage}"
+        Route="DashboardPage" />
+        </Tab>
+        
         <Tab Title="SpeedTest"
              Icon="./images/car_cruise_control.svg">
             <ShellContent
@@ -33,13 +40,6 @@
             <ShellContent
         ContentTemplate="{DataTemplate local:ReportPage}"
         Route="ReportPage" />
-        </Tab>
-
-        <Tab Title="Settings"
-             Icon="./images/cog_outline.svg">
-            <ShellContent
-        ContentTemplate="{DataTemplate local:SettingsPage}"
-        Route="SettingsPage" />
         </Tab>
     </TabBar>
 </Shell>

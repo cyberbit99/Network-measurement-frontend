@@ -17,6 +17,7 @@ namespace Network_measurement_frontend.Shared
 
         private User user;
         private bool isActive;
+        public MeasurementReport report;
 
         public User GetUser()
         {
@@ -26,6 +27,14 @@ namespace Network_measurement_frontend.Shared
         {
             return this.isActive;
         }
+        public MeasurementReport GetReport()
+        {
+            return this.report;
+        }
+        public static Session Instance()
+        {
+            return instance;
+        }
 
         public static Session Instance(User user) 
         {
@@ -34,6 +43,10 @@ namespace Network_measurement_frontend.Shared
                 instance = new Session(user, true);
             }
             return instance;
+        }
+        public static void Instance(MeasurementReport report)
+        {
+            instance.report = report;
         }
 
         public static void LogOut()

@@ -26,6 +26,6 @@
         </ListView>
         </ScrollView>
         <Button x:Name="BtnDevices" Text="Scan your LAN" Clicked="BtnDevices_Clicked" HeightRequest="50" FontSize="Medium"/>
-        <Button x:Name="BtnAddToReport" Text="Add to the report"  HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
+        <Button x:Name="BtnAdd" Text="Add to the report" Clicked="BtnAdd_Clicked" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
     </VerticalStackLayout>
 </ContentPage>

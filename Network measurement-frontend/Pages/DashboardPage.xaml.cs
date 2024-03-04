@@ -1,22 +1,30 @@
 using Network_measurement_frontend.Shared;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using Microsoft.Maui;
 
 namespace Network_measurement_frontend.Pages;
 
-public partial class ReportPage : ContentPage
+public partial class DashboardPage : ContentPage
 {
     public ObservableCollection<MeasurementReport> Reports { get; set; } = new ObservableCollection<MeasurementReport>();
-
-    public ReportPage()
+    public event EventHandler ActiveReportChanged;
+    public DashboardPage()
     {
         InitializeComponent();
         BindingContext = this;
+        BtnSetActive.IsEnabled = false;
+        itemListView.ItemSelected += (sender, e) =>
+        {
+            BtnSetActive.IsEnabled = itemListView.SelectedItem != null;
+        };
     }
     protected override async void OnAppearing()
     {
+        LblGreeting.Text = "Welcome " + Session.Instance().GetUser().Firstname;
+        SetActive();
         base.OnAppearing();
+
+        BtnSetActive.IsEnabled = false;
 
         // Fetch the list of items from the backend API
         var fetchedItems = await FetchItems();
@@ -27,24 +35,16 @@ public partial class ReportPage : ContentPage
         {
             Reports.Add(item);
         }
-        ;
     }
-    private async void btn_Edit_Selected(object sender, EventArgs e)
+    private void SetActive()
     {
-        await Navigation.PushAsync(new ReportEditorPage(itemListView.SelectedItem));
-    }
-
-    private void BtnCreateNewReport_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync("//NewReportPage");
-    }
-
-    private void BtnExport_Clicked(object sender, EventArgs e)
-    {
+        if (Session.Instance().report != null)
+        {
+            ActiveReport.Text = Session.Instance().report.Name;
+            ActiveReportChanged?.Invoke(this, EventArgs.Empty);
+        }
 
     }
-
-
     private async Task<List<MeasurementReport>> FetchItems()
     {
         // Use HttpClient or your preferred HTTP client to make a request to the API
@@ -56,5 +56,16 @@ public partial class ReportPage : ContentPage
         var httpClient = new HttpClient();
         var response = await httpClient.GetStringAsync($"http://192.168.1.85:7037/api/getreport/{user.UserId}");
         return JsonConvert.DeserializeObject<List<MeasurementReport>>(response);
+    }
+
+    private void BtnSetActive_Clicked(object sender, EventArgs e)
+    {
+        Session.Instance(itemListView.SelectedItem as MeasurementReport);
+        SetActive();
+    }
+    private void BtnLogOut_Clicked(object sender, EventArgs e)
+    {
+        Session.LogOut();
+        Shell.Current.GoToAsync("//LoginPage");
     }
 }

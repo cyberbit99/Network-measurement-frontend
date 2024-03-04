@@ -4,6 +4,11 @@
               xmlns:local="clr-namespace:Network_measurement_frontend.Pages"
              x:Class="Network_measurement_frontend.Pages.LoginPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
+        <Frame x:Name="Warning" BackgroundColor="OrangeRed" IsVisible="false" >
+            <Label x:Name="Warningmsg" TextColor="White"/>
+        </Frame>
+        <Label Text="Network-measurement" FontSize="25" HorizontalOptions="Center" FontAttributes="Bold"/>
+
         <Entry x:Name="EntUsername" Placeholder="Username" />
         <Entry x:Name="EntPassword" Placeholder="Password" IsPassword="True" />
         <VerticalStackLayout VerticalOptions="Center" Spacing="20">
