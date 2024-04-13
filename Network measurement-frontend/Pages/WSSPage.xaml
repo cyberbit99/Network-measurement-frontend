@@ -5,8 +5,6 @@
              x:Class="Network_measurement_frontend.Pages.WSSPage"
                  x:Name="scanPage">
     <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
-        <Label x:Name="LblRssi" Text="50" FontSize="70" HorizontalOptions="Center" FontAttributes="Bold"/>
-        <Label x:Name="LblBssid" Text="50" FontSize="Default"  HorizontalOptions="Center" FontAttributes="Bold"/>
         <Grid>
             <ActivityIndicator
          x:Name="loading"
@@ -14,7 +12,7 @@
          IsRunning="True"
          WidthRequest="46"
          Color="{StaticResource SecondaryDarkText}" />
-            <ScrollView Padding="20,0" MaximumHeightRequest="200">
+            <ScrollView Padding="20,0" MaximumHeightRequest="400">
                 <CollectionView x:Name="scanCollectionView" SelectionMode="None">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" />
@@ -28,10 +26,13 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
-                                        <Label FontSize="18" Text="{Binding SsidName}" />
-                                        <Label FontSize="14" Text="{Binding Bssid}" />
-                                    </StackLayout>
+                                    <HorizontalStackLayout  Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                        <StackLayout>
+                                            <Label  Text="{Binding SsidName}" />
+                                            <Label  Text="{Binding Bssid}" />
+                                            <Label Text="{Binding SignalStrengthDecibel}" />
+                                        </StackLayout>
+                                    </HorizontalStackLayout>
                                     <Button
                                  Grid.Column="1"
                                  Padding="18,0"
@@ -65,7 +66,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnMeasure" Text="Measure all"  HeightRequest="50" FontSize="Medium" Clicked="BtnMeasure_Clicked"/>
+        <Button x:Name="BtnMeasure"
+                Command="{Binding Source={x:Reference Name=scanPage}, Path=BindingContext.ScanCommand}"
+                CommandParameter="{Binding .}"
+                Text="Measure all"  HeightRequest="50" FontSize="Medium" Clicked="BtnMeasure_Clicked"/>
         <Button x:Name="BtnAdd" Text="Add to the report" Clicked="BtnAdd_Clicked" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
     </VerticalStackLayout>
 </ContentPage>

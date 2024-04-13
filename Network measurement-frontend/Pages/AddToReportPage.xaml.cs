@@ -10,13 +10,16 @@ public partial class AddToReportPage : ContentPage
 {
     public ObservableCollection<MeasurementReport> Reports { get; set; } = new ObservableCollection<MeasurementReport>();
     public ObservableCollection<object> Items { get; set; } = new ObservableCollection<object>();
-    public AddToReportPage(List<object> initialItems)
+
+    public int Type { get; set; }
+    public AddToReportPage(List<object> initialItems, int type)
     {
         InitializeComponent();
         foreach (var item in initialItems)
         {
             Items.Add(item);
         }
+        Type = type;
 
         // Set the BindingContext to the collection of items
         BindingContext = this;
@@ -59,19 +62,27 @@ public partial class AddToReportPage : ContentPage
 
         Navigation.PopAsync();
     }
-    private async Task SaveMeasuerement(List<object> list)
+    private async Task SaveMeasuerement(ObservableCollection<object> list, int type)
     {
+        Session session = Session.Instance(null as User);
+        User user = session.GetUser();
         Measurement measurement = new Measurement();
-        string target = "http://192.168.1.85:7037/api/loginsession";
+        string target = "http://192.168.1.85:7037/api/cou/measurement";
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Post, target);
+
         measurement.MeasuredData = JsonConvert.SerializeObject(list);
+        measurement.CreatedAt = DateTime.Now;
+        measurement.MeasurementReportId = session.GetReport().MeasurementReportId;
+        measurement.MeasurementTypeId = type;
+
         request.Content = CreateContent(measurement);
-        client.SendAsync(request);
+        await client.SendAsync(request);
     }
-    private void BtnAddToActive_Clicked(object sender, EventArgs e)
+    private async void BtnAddToActive_Clicked(object sender, EventArgs e)
     {
-        Navigation.PopAsync();
+        await SaveMeasuerement(Items, Type);
+        await Navigation.PopAsync();
     }
     private StringContent CreateContent(object ob)
     {

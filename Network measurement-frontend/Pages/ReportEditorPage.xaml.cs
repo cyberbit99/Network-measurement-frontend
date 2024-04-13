@@ -1,4 +1,5 @@
 using Network_measurement_frontend.Shared;
+using Network_measurement_frontend.Shared.Model;
 using Newtonsoft.Json;
 
 namespace Network_measurement_frontend.Pages;

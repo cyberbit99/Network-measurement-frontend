@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Network_measurement_frontend.Shared.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

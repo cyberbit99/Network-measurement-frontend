@@ -12,6 +12,8 @@ namespace Network_measurement_frontend.Pages;
 public partial class LoginPage : ContentPage
 {
     HttpResponseMessage response = new HttpResponseMessage();
+    bool warning = false;
+
     public LoginPage()
     {
         InitializeComponent();
@@ -52,9 +54,9 @@ public partial class LoginPage : ContentPage
         catch (Exception ex)
         {
             // Handle the exception and show the error message
-            EntUsername.BackgroundColor  = (Color.FromRgb(100,100,100));
+            EntUsername.BackgroundColor = (Color.FromRgb(100, 100, 100));
         }
-        
+
 
     }
     private async Task<HttpResponseMessage> GetSession()
@@ -71,17 +73,8 @@ public partial class LoginPage : ContentPage
     private StringContent CreateContent()
     {
         LoginData loginData = new LoginData(EntUsername.Text, EntPassword.Text);
-        //access for development
-
-        if (loginData.Email == "admin" && loginData.Password == "admin")
-        {
-            User u = new User{ Username="admin", Password="admin", Firstname="admin", Lastname="admin", UserEmail="admin@admin.hu", UserId=1, UserRoleId=2};
-            Session.Instance(u);
-            Shell.Current.GoToAsync("//HomePage");
-        }
         string json = JsonConvert.SerializeObject(loginData);
         var httpContent = new StringContent(json, null, "application/json");
-
         return httpContent;
     }
 

@@ -45,6 +45,6 @@ public partial class SpeedTestPage : ContentPage
 
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddToReportPage(SpeedTestItems));
+        await Navigation.PushAsync(new AddToReportPage(SpeedTestItems, (int)MesurementType.SPT));
     }
 }

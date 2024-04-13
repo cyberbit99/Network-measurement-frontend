@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Zeroconf;
 using Network_measurement_frontend.Shared;
+using Network_measurement_frontend.Shared.Model;
 
 namespace Network_measurement_frontend.Pages;
 
@@ -68,6 +69,6 @@ public partial class DevicesPage : ContentPage
     }
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AddToReportPage(DevicesItems));
+        await Navigation.PushAsync(new AddToReportPage(DevicesItems, (int)MesurementType.DSC));
     }
 }

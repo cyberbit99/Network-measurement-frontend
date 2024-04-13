@@ -2,6 +2,7 @@ using Network_measurement_frontend.Shared;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Microsoft.Maui;
+using Network_measurement_frontend.Shared.Model;
 
 namespace Network_measurement_frontend.Pages;
 
@@ -23,11 +24,10 @@ public partial class ReportPage : ContentPage
 
         // Clear the existing items and add the fetched items to the collection
         Reports.Clear();
-        foreach (var item in fetchedItems)
+        foreach (var item in fetchedItems ?? Enumerable.Empty<MeasurementReport> ())
         {
             Reports.Add(item);
         }
-        ;
     }
     private async void btn_Edit_Selected(object sender, EventArgs e)
     {
