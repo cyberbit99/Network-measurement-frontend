@@ -51,21 +51,18 @@ public partial class AddToReportPage : ContentPage
         return JsonConvert.DeserializeObject<List<MeasurementReport>>(response);
     }
 
-    private void BtnAddToSelected_Clicked(object sender, EventArgs e)
+    private async void BtnAddToSelected_Clicked(object sender, EventArgs e)
     {
         if (itemListView.SelectedItem != null)
         {
-
+            MeasurementReport report = itemListView.SelectedItem as MeasurementReport;
+            await SaveMeasuerement(Items, Type, report.MeasurementReportId );
 
         }
-
-
-        Navigation.PopAsync();
+        await Navigation.PopAsync();
     }
-    private async Task SaveMeasuerement(ObservableCollection<object> list, int type)
+    private async Task SaveMeasuerement(ObservableCollection<object> list, int type, int reportid)
     {
-        Session session = Session.Instance(null as User);
-        User user = session.GetUser();
         Measurement measurement = new Measurement();
         string target = "http://192.168.1.85:7037/api/cou/measurement";
         var client = new HttpClient();
@@ -73,7 +70,7 @@ public partial class AddToReportPage : ContentPage
 
         measurement.MeasuredData = JsonConvert.SerializeObject(list);
         measurement.CreatedAt = DateTime.Now;
-        measurement.MeasurementReportId = session.GetReport().MeasurementReportId;
+        measurement.MeasurementReportId = reportid;
         measurement.MeasurementTypeId = type;
 
         request.Content = CreateContent(measurement);
@@ -81,7 +78,8 @@ public partial class AddToReportPage : ContentPage
     }
     private async void BtnAddToActive_Clicked(object sender, EventArgs e)
     {
-        await SaveMeasuerement(Items, Type);
+        Session session = Session.Instance(null as User);
+        await SaveMeasuerement(Items, Type, session.GetReport().MeasurementReportId);
         await Navigation.PopAsync();
     }
     private StringContent CreateContent(object ob)
@@ -90,5 +88,10 @@ public partial class AddToReportPage : ContentPage
         var httpContent = new StringContent(json, null, "application/json");
 
         return httpContent;
+    }
+
+    private void BtnCancel_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
     }
 }

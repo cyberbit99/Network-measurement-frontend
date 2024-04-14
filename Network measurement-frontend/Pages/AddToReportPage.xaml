@@ -21,5 +21,6 @@
         </ListView>
         <Button x:Name="BtnAddToSelected" Text="Add to the selected" HeightRequest="50" FontSize="Medium" Clicked="BtnAddToSelected_Clicked" />
         <Button x:Name="BtnAddToActive" Text="Add to the active" HeightRequest="50" FontSize="Medium" Clicked="BtnAddToActive_Clicked" />
+        <Button x:Name="BtnCancel" Text="Cancel" HeightRequest="50" FontSize="Medium" Clicked="BtnCancel_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

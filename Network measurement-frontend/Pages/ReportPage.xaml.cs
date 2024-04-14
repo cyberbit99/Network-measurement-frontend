@@ -3,12 +3,16 @@ using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Microsoft.Maui;
 using Network_measurement_frontend.Shared.Model;
+using System.Diagnostics.Metrics;
+using Network_measurement_frontend.Shared.Requests;
 
 namespace Network_measurement_frontend.Pages;
 
 public partial class ReportPage : ContentPage
 {
     public ObservableCollection<MeasurementReport> Reports { get; set; } = new ObservableCollection<MeasurementReport>();
+
+    HttpResponseMessage response = new HttpResponseMessage();
 
     public ReportPage()
     {
@@ -34,13 +38,31 @@ public partial class ReportPage : ContentPage
         await Navigation.PushAsync(new ReportEditorPage(itemListView.SelectedItem));
     }
 
-    private void BtnCreateNewReport_Clicked(object sender, EventArgs e)
+    private async void BtnCreateNewReport_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//NewReportPage");
+        await Navigation.PushAsync(new NewReportPage());
+        //Shell.Current.GoToAsync("//NewReportPage");
     }
 
-    private void BtnExport_Clicked(object sender, EventArgs e)
+    private async void BtnExport_Clicked(object sender, EventArgs e)
     {
+        //add át a szükséges adatokat
+        string target = "http://192.168.1.85:7037/api/getreportpdf";
+        var client = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Post, target);
+
+        if (itemListView.SelectedItem != null)
+        {
+            MeasurementReport report = new MeasurementReport();
+            report = itemListView.SelectedItem as MeasurementReport;
+
+            MeasurementReportRequest reportRequest = new MeasurementReportRequest();
+            reportRequest.MeasurementReportId = report.MeasurementReportId;
+            reportRequest.UserId = report.UserId;
+            request.Content = CreateContent(reportRequest);
+        }
+
+        response = await client.SendAsync(request);
 
     }
 
@@ -56,5 +78,13 @@ public partial class ReportPage : ContentPage
         var httpClient = new HttpClient();
         var response = await httpClient.GetStringAsync($"http://192.168.1.85:7037/api/getreport/{user.UserId}");
         return JsonConvert.DeserializeObject<List<MeasurementReport>>(response);
+    }
+
+    private StringContent CreateContent(MeasurementReportRequest reportRequest)
+    {
+        string json = JsonConvert.SerializeObject(reportRequest);
+        var httpContent = new StringContent(json, null, "application/json");
+
+        return httpContent;
     }
 }

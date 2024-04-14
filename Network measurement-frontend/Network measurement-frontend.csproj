@@ -105,6 +105,9 @@
     <MauiXaml Update="Pages\AddToReportPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Pages\ReportExportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Pages\ReportPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
