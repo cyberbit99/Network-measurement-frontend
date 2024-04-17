@@ -59,6 +59,8 @@ public partial class ReportPage : ContentPage
             MeasurementReportRequest reportRequest = new MeasurementReportRequest();
             reportRequest.MeasurementReportId = report.MeasurementReportId;
             reportRequest.UserId = report.UserId;
+            reportRequest.Name = report.Name;
+            reportRequest.Description = report.Description;
             request.Content = CreateContent(reportRequest);
         }
 
