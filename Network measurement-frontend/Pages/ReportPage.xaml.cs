@@ -50,11 +50,13 @@ public partial class ReportPage : ContentPage
         string target = "http://192.168.1.85:7037/api/getreportpdf";
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Post, target);
+        string filename = "";
 
         if (itemListView.SelectedItem != null)
         {
             MeasurementReport report = new MeasurementReport();
             report = itemListView.SelectedItem as MeasurementReport;
+            filename = report.MeasurementReportId.ToString() + ".pdf";
 
             MeasurementReportRequest reportRequest = new MeasurementReportRequest();
             reportRequest.MeasurementReportId = report.MeasurementReportId;
@@ -62,9 +64,12 @@ public partial class ReportPage : ContentPage
             reportRequest.Name = report.Name;
             reportRequest.Description = report.Description;
             request.Content = CreateContent(reportRequest);
+
         }
 
         response = await client.SendAsync(request);
+        byte[] file = await response.Content.ReadAsByteArrayAsync();
+        OpenPdfAsync(await SaveTemporaryFileAsync(file, filename));
 
     }
 
@@ -89,4 +94,30 @@ public partial class ReportPage : ContentPage
 
         return httpContent;
     }
+
+    public async Task<string> SaveTemporaryFileAsync(byte[] pdfBytes, string fileName)
+    {
+        string tempFolderPath = Path.GetTempPath(); // Get temporary folder path
+        string filePath = Path.Combine(tempFolderPath, fileName);
+
+        await File.WriteAllBytesAsync(filePath, pdfBytes); // Write the PDF bytes to the file
+
+        return filePath;
+    }
+    public async Task OpenPdfAsync(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            await Launcher.OpenAsync(new OpenFileRequest
+            {
+                File = new ReadOnlyFile(filePath)
+            });
+        }
+        else
+        {
+            // Handle the error if the file does not exist
+            Console.WriteLine("File not found.");
+        }
+    }
+
 }
