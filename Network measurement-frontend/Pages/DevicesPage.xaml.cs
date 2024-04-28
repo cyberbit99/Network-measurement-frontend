@@ -25,8 +25,14 @@ public partial class DevicesPage : ContentPage
         try
         {
             var devices = await DiscoverDevices();
+
             deviceListView.ItemsSource = devices;
-            DevicesItems.Add(devices);
+
+            foreach (var device in devices)
+            {
+                DevicesItems.Add(device);
+            }
+            
         }
         catch (Exception ex)
         {
