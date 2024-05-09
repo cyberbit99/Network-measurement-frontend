@@ -83,5 +83,39 @@ namespace Network_measurement_frontend.Measurements
             new Random().NextBytes(data);
             return data;
         }
+
+        public long PingHost(string nameOrAddress)
+        {
+            long pingtime =0;
+            Ping pinger = null;
+            int times = 4;
+
+            try
+            {
+                pinger = new Ping();
+                PingReply reply = pinger.Send(nameOrAddress);
+                for ( int i = 0;  i < times; i++)
+                {
+                     reply =  pinger.Send(nameOrAddress);
+                    Thread.Sleep(500);
+                     pingtime += reply.RoundtripTime;
+                }
+                pingtime = pingtime / times;
+
+            }
+            catch (PingException)
+            {
+                // Discard PingExceptions and return false;
+            }
+            finally
+            {
+                if (pinger != null)
+                {
+                    pinger.Dispose();
+                }
+            }
+
+            return pingtime;
+        }
     }
 }

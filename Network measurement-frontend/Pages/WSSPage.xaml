@@ -70,6 +70,7 @@
                 Command="{Binding Source={x:Reference Name=scanPage}, Path=BindingContext.ScanCommand}"
                 CommandParameter="{Binding .}"
                 Text="Measure all"  HeightRequest="50" FontSize="Medium" Clicked="BtnMeasure_Clicked"/>
+        <Button x:Name="BtnDiadramm" Text="View in diagramm" Clicked="BtnDiadramm_Clicked" HeightRequest="50" FontSize="Medium"/>
         <Button x:Name="BtnAdd" Text="Add to the report" Clicked="BtnAdd_Clicked" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Zeroconf;
 using Network_measurement_frontend.Shared;
 using Network_measurement_frontend.Shared.Model;
+using Network_measurement_frontend.Measurements;
+using Device = Network_measurement_frontend.Shared.Device;
 
 namespace Network_measurement_frontend.Pages;
 
@@ -76,5 +78,25 @@ public partial class DevicesPage : ContentPage
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AddToReportPage(DevicesItems, (int)MesurementType.DSC));
+    }
+
+    private void BtnDevicePing_Clicked(object sender, EventArgs e)
+    {
+        SpeedTest st = new SpeedTest();
+        Device selected = (Device)deviceListView.SelectedItem;
+        Pingms.Text = selected.Name;
+        try
+        {
+            var ping = st.PingHost(selected.IPAddress);
+
+            Pingms.Text +=": "+ ping.ToString()+"ms";
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
     }
 }

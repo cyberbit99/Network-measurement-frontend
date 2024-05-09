@@ -25,7 +25,10 @@
             </ListView.ItemTemplate>
         </ListView>
         </ScrollView>
+        <Label x:Name="Pingms" TextColor="LightSlateGrey" FontSize="Body" HorizontalOptions="Center" />
+
         <Button x:Name="BtnDevices" Text="Scan your LAN" Clicked="BtnDevices_Clicked" HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnDevicePing" Text="Measure Latency" Clicked="BtnDevicePing_Clicked" HeightRequest="50" FontSize="Medium"/>
         <Button x:Name="BtnAdd" Text="Add to the report" Clicked="BtnAdd_Clicked" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
     </VerticalStackLayout>
 </ContentPage>

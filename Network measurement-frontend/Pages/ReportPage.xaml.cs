@@ -113,11 +113,7 @@ public partial class ReportPage : ContentPage
                 File = new ReadOnlyFile(filePath)
             });
         }
-        else
-        {
-            // Handle the error if the file does not exist
-            Console.WriteLine("File not found.");
-        }
+        
     }
 
 }

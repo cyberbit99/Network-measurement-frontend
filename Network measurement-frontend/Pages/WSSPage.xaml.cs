@@ -92,4 +92,9 @@ public partial class WSSPage : ContentPage
     {
         await GetWifiList();
     }
+
+    private void BtnDiadramm_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
