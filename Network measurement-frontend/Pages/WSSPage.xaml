@@ -13,7 +13,7 @@
          WidthRequest="46"
          Color="{StaticResource SecondaryDarkText}" />
             <ScrollView Padding="20,0" MaximumHeightRequest="400">
-                <CollectionView x:Name="scanCollectionView" SelectionMode="None">
+                <CollectionView x:Name="scanCollectionView" SelectionMode="None" >
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
@@ -70,7 +70,7 @@
                 Command="{Binding Source={x:Reference Name=scanPage}, Path=BindingContext.ScanCommand}"
                 CommandParameter="{Binding .}"
                 Text="Measure all"  HeightRequest="50" FontSize="Medium" Clicked="BtnMeasure_Clicked"/>
-        <Button x:Name="BtnDiadramm" Text="View in diagramm" Clicked="BtnDiadramm_Clicked" HeightRequest="50" FontSize="Medium"/>
+        <Button x:Name="BtnDiadram" Text="View in diagram" Clicked="BtnDiadram_Clicked" HeightRequest="50" FontSize="Medium"/>
         <Button x:Name="BtnAdd" Text="Add to the report" Clicked="BtnAdd_Clicked" HeightRequest="50" FontSize="Medium" BackgroundColor="DeepSkyBlue"/>
     </VerticalStackLayout>
 </ContentPage>

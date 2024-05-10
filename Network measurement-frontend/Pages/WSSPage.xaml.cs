@@ -11,6 +11,7 @@ public partial class WSSPage : ContentPage
     public Command InfoCommand { get; }
     public Command ScanCommand { get; }
     public List<object> WSSItems { get; set; } = new List<object>();
+    public List<NetworkData> WSSItemsToDiagram { get; set; } = new List<NetworkData>();
 
     public WSSPage()
     {
@@ -55,6 +56,8 @@ public partial class WSSPage : ContentPage
             scanCollectionView.IsVisible = false;
             loading.IsRunning = true;
             await Task.Delay(1000);
+            WSSItems.Clear();
+            WSSItemsToDiagram.Clear();
             var response = await CrossWifiManager.Current.ScanWifiNetworks();
             foreach (var item in response)
             {
@@ -69,10 +72,24 @@ public partial class WSSPage : ContentPage
                     SignalStrengthDecibel = item.SignalStrengthDecibel  // EZT TETTEM HOZZÁ
 
                 });
+                WSSItemsToDiagram.Add(new NetworkData()
+                {
+                    StausId = item.StausId,
+                    IpAddress = (int)item.IpAddress,
+                    Bssid = item.Bssid,
+                    Ssid = item.Ssid,
+                    GatewayAddress = item.GatewayAddress,
+                    NativeObject = item.NativeObject,
+                    SignalStrengthDecibel = item.SignalStrengthDecibel  // EZT TETTEM HOZZÁ
+
+                });
             }
+            scanCollectionView.ItemsSource = null;
             scanCollectionView.ItemsSource = WSSItems;
+            await Task.Delay(500);
             loading.IsRunning = false;
             scanCollectionView.IsVisible = true;
+
         }
         else
             await DisplayAlert("No location permisson", "Please provide location permission", "OK");
@@ -93,8 +110,8 @@ public partial class WSSPage : ContentPage
         await GetWifiList();
     }
 
-    private void BtnDiadramm_Clicked(object sender, EventArgs e)
+    private async void BtnDiadram_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new DiagramPage(WSSItemsToDiagram));
     }
 }

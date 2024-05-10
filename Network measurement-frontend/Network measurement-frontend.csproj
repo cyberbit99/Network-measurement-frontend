@@ -70,6 +70,7 @@
     <None Remove="Resources\Images\wifi_settings.svg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microcharts.Maui" Version="1.0.0" />
     <PackageReference Include="Zeroconf" Version="3.6.11" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -88,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Pages\DevicesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Pages\DiagramPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Pages\HomePage.xaml">

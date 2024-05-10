@@ -1,4 +1,6 @@
-﻿namespace Network_measurement_frontend;
+﻿using Microcharts.Maui;
+
+namespace Network_measurement_frontend;
 
 public static class MauiProgram
 {
@@ -7,6 +9,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMicrocharts()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

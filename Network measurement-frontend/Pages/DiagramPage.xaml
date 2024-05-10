@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="Network_measurement_frontend.Pages.DiagramPage"
+             Title="DiagramPage">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" Margin="20, 0,20, 0" Spacing="20">
+            <micro:ChartView x:Name="chart" HeightRequest="400" MinimumWidthRequest="100" />
+
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Not yet? " FontSize="Medium" TextColor="#101010"/>
+                <Label Text="Back" FontSize="Medium" TextColor="#1d94ab">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
