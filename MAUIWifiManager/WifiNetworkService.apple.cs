@@ -131,7 +131,8 @@ namespace Plugin.MauiWifiManager
                         {
                             Ssid = network.Ssid,
                             Bssid = network.Bssid,
-                            SignalStrength = network.SignalStrength
+                            SignalStrength = network.SignalStrength,
+                            SignalStrengthDecibel = network.SignalStrength,
                         });
                     }
                     await Task.Delay(1000); // wait for the scan to complete

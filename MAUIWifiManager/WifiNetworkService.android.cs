@@ -311,13 +311,13 @@ namespace Plugin.MauiWifiManager
                 {
                     if (wifiInfo.SupplicantState == SupplicantState.Completed)
                     {
-                        _networkData.StausId = 1;
                         _networkData.Ssid = wifiInfo?.SSID?.Trim(new char[] { '"', '\"' });
                         _networkData.Bssid = wifiInfo?.BSSID;
                         _networkData.IpAddress = wifiInfo.IpAddress;
                         _networkData.NativeObject = wifiInfo;
                         _networkData.SignalStrength = wifiInfo.Rssi;
                         _networkData.SignalStrengthDecibel = wifiInfo.Rssi;  // EZT TETTEM HOZZÁ
+                        _networkData.StausId = wifiInfo.Frequency;
                     }                                 
                 }
             }

@@ -154,7 +154,8 @@ namespace Plugin.MauiWifiManager
                             Bssid = network.Bssid,
                             SignalStrength = network.SignalBars,
                             SecurityType = network.PhyKind,
-                            SignalStrengthDecibel=network.NetworkRssiInDecibelMilliwatts  // EZT TETTEM HOZZÁ
+                            SignalStrengthDecibel=network.NetworkRssiInDecibelMilliwatts,  // EZT TETTEM HOZZÁ
+                            StausId = network.ChannelCenterFrequencyInKilohertz
                         });
                     }
                 }

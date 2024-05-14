@@ -39,11 +39,11 @@ public partial class WSSPage : ContentPage
 
     private async void ExecuteInfoCommand(NetworkData model)
     {
-        var info = $"StatusId: {model.StausId}, " +
+        var info = $"Frequency: {model.StausId / 1} Hz, " +
                $"Ssid: {model.SsidName}, " +
                $"IpAddress: {model.IpAddress}, " +
                $"GatewayAddress: {model.GatewayAddress ?? "N/A"}, " +
-               $"Signal Strength: {model.SignalStrengthDecibel}, " + 
+               $"Signal Strength: {model.SignalStrengthDecibel} dBm, " + 
                $"Bssid: {model.Bssid}";
         await DisplayAlert("Network info", info, "OK");
     }
@@ -63,7 +63,7 @@ public partial class WSSPage : ContentPage
             {
                 WSSItems.Add(new NetworkData()
                 {
-                    StausId = item.StausId,
+                    StausId = item.StausId / 1000,
                     IpAddress = (int)item.IpAddress,
                     Bssid = item.Bssid,
                     Ssid = item.Ssid,
@@ -74,7 +74,7 @@ public partial class WSSPage : ContentPage
                 });
                 WSSItemsToDiagram.Add(new NetworkData()
                 {
-                    StausId = item.StausId,
+                    StausId = item.StausId / 1000,
                     IpAddress = (int)item.IpAddress,
                     Bssid = item.Bssid,
                     Ssid = item.Ssid,
